@@ -31,15 +31,14 @@ function TicketScreen({ navigation }) {
   //console.log("authcontext", authContext.user.name);
 
   React.useEffect(
-    () => navigation.addListener("focus", () => loadTickets()),
-    //console.log("LOAD TICKETS LISTNER"),
-    []
+    () => navigation.addListener("focus", () => loadTickets())
+    //[]
   );
 
   React.useEffect(
     () => navigation.addListener("focus", () => loadSearchData()),
     []
-    // console.log("LOAD SEARCH LISTNER")
+    //console.log("LOAD SEARCH LISTNER")
   );
 
   useEffect(() => {
