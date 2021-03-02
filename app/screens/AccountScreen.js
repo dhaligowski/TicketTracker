@@ -2,13 +2,19 @@ import React, { useContext, useState } from "react";
 import { View, StyleSheet, Text, Platform, StatusBar } from "react-native";
 import AppButton from "../components/AppButton";
 import AuthContext from "../auth/context";
+import ticketApi from "../api/ticket";
 
-function AccountScreen({}) {
+function AccountScreen({ navigation }) {
   const { user, setUser } = useContext(AuthContext);
   const [] = useState(false);
 
   const handleLogout = () => {
     setUser(null);
+  };
+  const handleClear = async () => {
+    const response = await ticketApi
+      .getTicket("Reset")
+      .then(() => navigation.navigate("Ticket"));
   };
 
   return (
@@ -19,6 +25,7 @@ function AccountScreen({}) {
       <Text style={styles.userText}>{user.email}</Text>
 
       <AppButton title="Logout" onPress={handleLogout} />
+      <AppButton title="Clear Tickets" onPress={handleClear} />
     </View>
   );
 }

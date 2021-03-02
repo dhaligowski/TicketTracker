@@ -19,7 +19,6 @@ import TicketCard from "../components/TicketCard";
 import ticketsApi from "../api/tickets";
 import ticketApi from "../api/ticket";
 import AuthContext from "../auth/context";
-import Animated from "react-native-reanimated";
 
 function TicketScreen({ navigation }) {
   const [tickets, setTickets] = useState([]);
@@ -29,23 +28,23 @@ function TicketScreen({ navigation }) {
   const [] = useState(selectedView);
   const [text, setText] = useState("");
   const authContext = useContext(AuthContext);
-  console.log("authcontext", authContext.user.name);
+  //console.log("authcontext", authContext.user.name);
 
   React.useEffect(
     () => navigation.addListener("focus", () => loadTickets()),
-    console.log("LOAD TICKETS LISTNER"),
+    //console.log("LOAD TICKETS LISTNER"),
     []
   );
 
   React.useEffect(
     () => navigation.addListener("focus", () => loadSearchData()),
-    [],
-    console.log("LOAD SEARCH LISTNER")
+    []
+    // console.log("LOAD SEARCH LISTNER")
   );
 
   useEffect(() => {
     loadTickets();
-    console.log(" USEEFFECT SELECTEDVIEW HOOK", selectedView);
+    //console.log(" USEEFFECT SELECTEDVIEW HOOK", selectedView);
   }, [selectedView]);
 
   const loadTickets = async () => {
