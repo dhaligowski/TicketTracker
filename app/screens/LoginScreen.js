@@ -13,73 +13,72 @@ import jwtDecode from "jwt-decode";
 import AuthContext from "../auth/context";
 import authStorage from "../auth/storage";
 import ResizeAnimation from "../animations/ResizeAnimation";
-import ButtonAnimation from "../animations/ButtonAnimation";
 
-//////////////////////////////////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////////////////////////////////
 
-const CIRCLE_SIZE = 100;
+// const CIRCLE_SIZE = 100;
 
-const Circle = ({ onPress, animatedValue }) => {
-  const inputRange = [0, 0.001, 0.5, 0.501, 1];
-  const containerBg = animatedValue.interpolate({
-    inputRange,
-    outputRange: ["gold", "gold", "gold", "#444", "#444"], ///immidate apply new color
-  });
-  const circleBg = animatedValue.interpolate({
-    inputRange,
-    outputRange: ["#444", "#444", "#444", "gold", "gold"], ///immidate apply new color
-  });
+// const Circle = ({ onPress, animatedValue }) => {
+//   const inputRange = [0, 0.001, 0.5, 0.501, 1];
+//   const containerBg = animatedValue.interpolate({
+//     inputRange,
+//     outputRange: ["gold", "gold", "gold", "#444", "#444"], ///immidate apply new color
+//   });
+//   const circleBg = animatedValue.interpolate({
+//     inputRange,
+//     outputRange: ["#444", "#444", "#444", "gold", "gold"], ///immidate apply new color
+//   });
 
-  return (
-    <Animated.View
-      style={[
-        StyleSheet.absoluteFillObject,
-        styles.circleContainer,
-        { backgroundColor: containerBg },
-      ]}
-    >
-      <Animated.View
-        style={[
-          styles.circle,
-          {
-            backgroundColor: circleBg,
-            transform: [
-              {
-                perspective: 300,
-              },
-              {
-                rotateY: animatedValue.interpolate({
-                  inputRange: [0, 0.5, 1],
-                  outputRange: ["0deg", "-90deg", "-180deg"],
-                }),
-              },
-              {
-                scale: animatedValue.interpolate({
-                  inputRange: [0, 0.5, 1],
-                  outputRange: [1, 8, 1],
-                }),
-              },
-              // {
-              //   translateX: animatedValue.interpolate({
-              //     inputRange: [0, 0.5, 1],
-              //     outputRange: ["0%", "50%", "0%"],
-              //   }),
-              // },
-            ],
-          },
-        ]}
-      >
-        <TouchableOpacity onPress={onPress}>
-          <View style={[styles.circle, styles.circleButton]}>
-            <AntDesign name="arrowright" size={28} color={"white"} />
-          </View>
-        </TouchableOpacity>
-      </Animated.View>
-    </Animated.View>
-  );
-};
+//   return (
+//     <Animated.View
+//       style={[
+//         StyleSheet.absoluteFillObject,
+//         styles.circleContainer,
+//         { backgroundColor: containerBg },
+//       ]}
+//     >
+//       <Animated.View
+//         style={[
+//           styles.circle,
+//           {
+//             backgroundColor: circleBg,
+//             transform: [
+//               {
+//                 perspective: 300,
+//               },
+//               {
+//                 rotateY: animatedValue.interpolate({
+//                   inputRange: [0, 0.5, 1],
+//                   outputRange: ["0deg", "-90deg", "-180deg"],
+//                 }),
+//               },
+//               {
+//                 scale: animatedValue.interpolate({
+//                   inputRange: [0, 0.5, 1],
+//                   outputRange: [1, 8, 1],
+//                 }),
+//               },
+//               // {
+//               //   translateX: animatedValue.interpolate({
+//               //     inputRange: [0, 0.5, 1],
+//               //     outputRange: ["0%", "50%", "0%"],
+//               //   }),
+//               // },
+//             ],
+//           },
+//         ]}
+//       >
+//         <TouchableOpacity onPress={onPress}>
+//           <View style={[styles.circle, styles.circleButton]}>
+//             <AntDesign name="arrowright" size={28} color={"white"} />
+//           </View>
+//         </TouchableOpacity>
+//       </Animated.View>
+//     </Animated.View>
+//   );
+// };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////////////
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
