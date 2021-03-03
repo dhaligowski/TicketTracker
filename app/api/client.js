@@ -1,9 +1,12 @@
 import { create } from "apisauce";
 import authStorage from "../auth/storage";
+import settings from "../config/settings";
 
 const apiClient = create({
-  //baseURL: "http://192.168.1.65:9000/api",
-  baseURL: "https://afternoon-spire-84745.herokuapp.com/api",
+  //baseURL: "http://192.168.0.11:9000/api",
+  baseURL: settings.apiURL,
+  //baseURL: settings.apiUrl,
+  //"https://afternoon-spire-84745.herokuapp.com/api",
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {
