@@ -32,6 +32,9 @@ function TicketScreen({ navigation }) {
 
   React.useEffect(() => navigation.addListener("focus", () => loadTickets()));
 
+  React.useEffect(() =>
+    navigation.addListener("focus", () => setjobSelected([]))
+  );
   React.useEffect(
     () => navigation.addListener("focus", () => loadSearchData()),
     []
