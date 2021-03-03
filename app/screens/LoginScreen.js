@@ -93,7 +93,7 @@ function LoginScreen({}) {
     const result = await authApi.login(email, password);
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
-    console.log("JWT TOKEN", result.data); //Verify JWT token https://jwt.io/
+    //console.log("JWT TOKEN", result.data); //Verify JWT token https://jwt.io/
     const user = jwtDecode(result.data);
     authContext.setUser(user);
     authStorage.setUserToken(result.data);

@@ -46,7 +46,7 @@ function RegisterScreen({}) {
     }
     const loginResult = await authApi.login(userInfo.email, userInfo.password);
     const authToken = loginResult.data;
-    console.log("JWT TOKEN", authToken);
+    //console.log("JWT TOKEN", authToken);  //Verify JWT token https://jwt.io/
     const user = jwtDecode(authToken);
     authContext.setUser(user);
     authStorage.setUserToken(loginResult.data);

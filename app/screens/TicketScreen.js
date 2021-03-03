@@ -28,22 +28,17 @@ function TicketScreen({ navigation }) {
   const [] = useState(selectedView);
   const [text, setText] = useState("");
   const authContext = useContext(AuthContext);
-  //console.log("authcontext", authContext.user.name);
+  //console.log("authcontext", authContext.user.name);  Verify authContext User/Password
 
-  React.useEffect(
-    () => navigation.addListener("focus", () => loadTickets())
-    //[]
-  );
+  React.useEffect(() => navigation.addListener("focus", () => loadTickets()));
 
   React.useEffect(
     () => navigation.addListener("focus", () => loadSearchData()),
     []
-    //console.log("LOAD SEARCH LISTNER")
   );
 
   useEffect(() => {
     loadTickets();
-    //console.log(" USEEFFECT SELECTEDVIEW HOOK", selectedView);
   }, [selectedView]);
 
   const loadTickets = async () => {
