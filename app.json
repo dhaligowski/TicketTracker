@@ -17,6 +17,7 @@
     "ios": {
       "supportsTablet": true
     },
+    "description": "A lightweight mobile tracker of events big and small.",
     "web": {
       "favicon": "./app/assets/favicon.png"
     }
