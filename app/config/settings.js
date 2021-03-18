@@ -2,7 +2,7 @@ import Constants from "expo-constants";
 
 const settings = {
   dev: {
-    apiURL: "http://192.168.0.11:9000/api",
+    apiURL: "http://192.168.x.xx:9000/api",
   },
   staging: {
     apiURL: "https://afternoon-spire-84745.herokuapp.com/api",
