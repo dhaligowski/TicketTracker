@@ -13,72 +13,7 @@ import jwtDecode from "jwt-decode";
 import AuthContext from "../auth/context";
 import authStorage from "../auth/storage";
 import ResizeAnimation from "../animations/ResizeAnimation";
-
-// //////////////////////////////////////////////////////////////////////////////////////
-
-// const CIRCLE_SIZE = 100;
-
-// const Circle = ({ onPress, animatedValue }) => {
-//   const inputRange = [0, 0.001, 0.5, 0.501, 1];
-//   const containerBg = animatedValue.interpolate({
-//     inputRange,
-//     outputRange: ["gold", "gold", "gold", "#444", "#444"], ///immidate apply new color
-//   });
-//   const circleBg = animatedValue.interpolate({
-//     inputRange,
-//     outputRange: ["#444", "#444", "#444", "gold", "gold"], ///immidate apply new color
-//   });
-
-//   return (
-//     <Animated.View
-//       style={[
-//         StyleSheet.absoluteFillObject,
-//         styles.circleContainer,
-//         { backgroundColor: containerBg },
-//       ]}
-//     >
-//       <Animated.View
-//         style={[
-//           styles.circle,
-//           {
-//             backgroundColor: circleBg,
-//             transform: [
-//               {
-//                 perspective: 300,
-//               },
-//               {
-//                 rotateY: animatedValue.interpolate({
-//                   inputRange: [0, 0.5, 1],
-//                   outputRange: ["0deg", "-90deg", "-180deg"],
-//                 }),
-//               },
-//               {
-//                 scale: animatedValue.interpolate({
-//                   inputRange: [0, 0.5, 1],
-//                   outputRange: [1, 8, 1],
-//                 }),
-//               },
-//               // {
-//               //   translateX: animatedValue.interpolate({
-//               //     inputRange: [0, 0.5, 1],
-//               //     outputRange: ["0%", "50%", "0%"],
-//               //   }),
-//               // },
-//             ],
-//           },
-//         ]}
-//       >
-//         <TouchableOpacity onPress={onPress}>
-//           <View style={[styles.circle, styles.circleButton]}>
-//             <AntDesign name="arrowright" size={28} color={"white"} />
-//           </View>
-//         </TouchableOpacity>
-//       </Animated.View>
-//     </Animated.View>
-//   );
-// };
-
-// /////////////////////////////////////////////////////////////////////////////////////////
+import CircleActivityIndicator from "../animations/CircleActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -88,9 +23,12 @@ const validationSchema = Yup.object().shape({
 function LoginScreen({}) {
   const authContext = useContext(AuthContext);
   const [loginFailed, setLoginFailed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async ({ email, password }) => {
+    setLoading(true);
     const result = await authApi.login(email, password);
+    setLoading(false);
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
     //console.log("JWT TOKEN", result.data); //Verify JWT token https://jwt.io/
@@ -101,6 +39,7 @@ function LoginScreen({}) {
 
   return (
     <AppScreen style={styles.container}>
+      {loading ? <CircleActivityIndicator animating={loading} /> : null}
       <View style={styles.form}>
         <ResizeAnimation>tt</ResizeAnimation>
 

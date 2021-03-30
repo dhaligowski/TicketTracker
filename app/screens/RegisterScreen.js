@@ -21,6 +21,7 @@ import AuthContext from "../auth/context";
 import authStorage from "../auth/storage";
 import ErrorMessage from "../components/ErrorMessage";
 import ResizeAnimation from "../animations/ResizeAnimation";
+import CircleActivityIndicator from "../animations/CircleActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(3).label("Name"),
@@ -32,9 +33,12 @@ function RegisterScreen({}) {
   const authContext = useContext(AuthContext);
   const [error, setError] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (userInfo) => {
+    setLoading(true);
     const result = await usersApi.register(userInfo);
+    setLoading(false);
     if (!result.ok) {
       setLoginFailed(true);
       if (result.data) {
@@ -54,6 +58,7 @@ function RegisterScreen({}) {
 
   return (
     <AppScreen style={styles.container}>
+      {loading ? <CircleActivityIndicator animating={loading} /> : null}
       <View style={styles.form}>
         <ResizeAnimation>tt</ResizeAnimation>
         <Formik
